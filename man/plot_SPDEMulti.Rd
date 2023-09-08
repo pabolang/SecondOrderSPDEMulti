@@ -43,7 +43,7 @@ L <- 10
 res <- simulateSPDEmodelMulti(d=d,theta0=theta0,nu=nu,eta=eta,sigma=sigma,
 alphaDash=alphaDash,numberOfSpatialPoints=M,numberOfTemporalPoints=N,L=L)
 
-SPDE_plot(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0.3,0.7))
+plot_SPDEMulti(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0.3,0.7))
 }
 \seealso{
 \link{simulateSPDEmodelMulti},\link{SecondOrderSPDEMulti}
