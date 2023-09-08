@@ -44,7 +44,7 @@ res
 
 The function `simulateSPDEmodel` returns a list, containg among others a matrix of the simultated model, which we can be plotted using the following function:
 ```r
-SPDE_plot(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0.3,0.7))
+plot_SPDEMulti(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0.3,0.7))
 ```
 
 <img width="983" alt="Bildschirmfoto 2023-07-22 um 17 21 01" src="https://github.com/pabolang/ParabolicSPDEsMulti/assets/78961989/1ad819a1-7a67-46ca-be5a-869b0cc82a52">
