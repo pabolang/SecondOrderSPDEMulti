@@ -3,7 +3,7 @@
 #' Provides a plot for the realized volatility statistics against the theoretical results. In addition it provides a plot for the deviation of theoretical and empirical results.
 #' @param data_list return of the function 'simulateSPDEmodelMulti' or a list containing the returns of the function 'simulateSPDEmodelMulti'.
 #' @param spatialDelta  a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
-#' @param newColors if True, it changes the colors of the returned plots. Default is F.
+#' @param newColors if FALSE, it changes the colors of the returned plots. Default is TRUE.
 #' @keywords Plotting realized volatilities
 #' @references PhD thesis Bossert, P.
 #' @export
@@ -35,7 +35,7 @@
 
 
 
-RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
+RV_plot <- function(data_list,spatialDelta=0.05,newColors = T){
 
   erg <- data_list
   d <- dim(erg$SG)[2]
@@ -52,10 +52,10 @@ RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
   }
   darkmint <- c( rgb2(123, 188, 176), rgb2(85, 156, 158), rgb2(58, 124, 137), rgb2(35, 93, 114), rgb2(18, 63, 90))
   adobeColorsDiscrete <- c("#323E40","#F2AB27","#BF6B04","#732002","#D95323","#254021","#2E5902","#024873")
-  
+
   is.naturalnumber <-
     function(x, tol = .Machine$double.eps^0.5)  x > tol & abs(x - round(x)) < tol
-  
+
   if(length(nu) != d){
     stop("'nu' must be a numeric vector of length 'd'.")
   }
@@ -121,7 +121,7 @@ RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
     p <- ggplot(dat,aes(x=x,y=y,group=group,color = group))+geom_line()+
       theme_minimal()+labs(x="Index of filtered spatial grid",y="Rescaled realized volatility",color=NULL)+
       theme(legend.position = "bottom")+
-      scale_fill_manual(values=adobeColorsDiscrete)
+      scale_colour_manual(values=adobeColorsDiscrete)
   } else {
     p <- ggplot(dat,aes(x=x,y=y,group=group,color = group))+geom_line()+
       theme_minimal()+labs(x="Index of filtered spatial grid",y="Rescaled realized volatility",color=NULL)+
@@ -132,7 +132,7 @@ RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
   dat$index <- SGWB2
   dat2 <- data.frame(deviation = abs(x1-x2),index = SGWB2)
 
-  
+
   if(newColors){
     p2 <- ggplot(dat2,aes(x=index,y=deviation,color=deviation))+geom_line()+
       theme_minimal()+labs(x="Index of filtered spatial grid",y="Deviation of theoretical and empirical results")+

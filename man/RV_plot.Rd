@@ -4,14 +4,14 @@
 \alias{RV_plot}
 \title{Plot realized volatility against the theoretical result}
 \usage{
-RV_plot(data_list, spatialDelta = 0.05, newColors = F)
+RV_plot(data_list, spatialDelta = 0.05, newColors = T)
 }
 \arguments{
 \item{data_list}{return of the function 'simulateSPDEmodelMulti' or a list containing the returns of the function 'simulateSPDEmodelMulti'.}
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
-\item{newColors}{if True, it changes the colors of the returned plots. Default is F.}
+\item{newColors}{if FALSE, it changes the colors of the returned plots. Default is TRUE.}
 }
 \value{
 a list with 2 plots, the main plot displays the theoretical and empirical realized volatilities. The other plot contains its deviation. Also both data sets for creating these plots are provided.

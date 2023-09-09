@@ -47,7 +47,7 @@ simulateSPDEmodelMulti(
 
 \item{em_data}{a data frame containing every combination of the orthonormal system which is used for the Fourier transform. Alternatively a path of type String can be used.}
 
-\item{approx_var}{a vector especially useful when simulating more than one data set. The approximated variance for the replacement random variables can be computed via the function \link[ParabolicSPDEsMulti:variance_approx]{ParabolicSPDEsMulti::variance_approx}. Alternatively a path of type String to the approx_var type vector can be used. Only of use when method is 'replacement'.}
+\item{approx_var}{a vector especially useful when simulating more than one data set. The approximated variance for the replacement random variables can be computed via the function \link{variance_approx}. Alternatively a path of type String to the approx_var type vector can be used. Only of use when method is 'replacement'.}
 
 \item{save_approx_var}{a Boolean variable being 'F' by default. If being 'T', the generated approximated variance or tghe replacement random varaibles is going to be saved. Therefore the parameter 'name_approx_var' needs to be specified as a string. Only of use when method is 'replacement'.}
 
