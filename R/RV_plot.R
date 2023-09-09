@@ -3,10 +3,7 @@
 #' Provides a plot for the realized volatility statistics against the theoretical results. In addition it provides a plot for the deviation of theoretical and empirical results.
 #' @param data_list return of the function 'simulateSPDEmodelMulti' or a list containing the returns of the function 'simulateSPDEmodelMulti'.
 #' @param spatialDelta  a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
-#' @param nu a real vector of dimension 'd' which controls the curvature of the solution field on each axis respectively.
-#' @param eta a real number greater than zero which reduces the noise level of parameter sigma and the curvature effect of parameter \code{nu}.
-#' @param sigma a real number greater than zero which controls the overall noise level of the solution field.
-#' @param alphaDash a real number in \code{(0,1)} controlling the roughness of the sample paths.
+#' @param newColors if True, it changes the colors of the returned plots. Default is F.
 #' @keywords Plotting realized volatilities
 #' @references PhD thesis Bossert, P.
 #' @export
@@ -38,11 +35,22 @@
 
 
 
-RV_plot <- function(data_list,spatialDelta){
+RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
+
+  erg <- data_list
+  d <- dim(erg$SG)[2]
+  delta <- spatialDelta
+  param <- data_list$param
+  nu <- param[paste("nu",1:d,sep="")]
+  eta <- param["eta"]
+  sigma <- param["sigma"]
+  alphaDash <- param["alphaDash"]
+  kappa <- nu/eta
+
 
   is.naturalnumber <-
     function(x, tol = .Machine$double.eps^0.5)  x > tol & abs(x - round(x)) < tol
-
+  
   if(length(nu) != d){
     stop("'nu' must be a numeric vector of length 'd'.")
   }
@@ -56,22 +64,6 @@ RV_plot <- function(data_list,spatialDelta){
   if(length(sigma)!= 1 || sigma <= 0){
     stop("'sigma' must be a positive numeric of length 1.")
   }
-
-
-
-
-
-  erg <- data_list
-  d <- dim(erg$SG)[2]
-  delta <- spatialDelta
-  param <- data_list$param
-  nu <- param[paste("nu",1:d,sep="")]
-  eta <- param["eta"]
-  sigma <- param["sigma"]
-  alphaDash <- param["alphaDash"]
-  kappa <- nu/eta
-
-
 
   y_WB_index <- function(SG,delta){
     d <- dim(SG)[2]
