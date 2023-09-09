@@ -47,7 +47,12 @@ RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
   alphaDash <- param["alphaDash"]
   kappa <- nu/eta
 
-
+  rgb2 <- function(r,g,b){
+    return(rgb(r/255,g/255,b/255))
+  }
+  darkmint <- c( rgb2(123, 188, 176), rgb2(85, 156, 158), rgb2(58, 124, 137), rgb2(35, 93, 114), rgb2(18, 63, 90))
+  adobeColorsDiscrete <- c("#323E40","#F2AB27","#BF6B04","#732002","#D95323","#254021","#2E5902","#024873")
+  
   is.naturalnumber <-
     function(x, tol = .Machine$double.eps^0.5)  x > tol & abs(x - round(x)) < tol
   
@@ -112,16 +117,31 @@ RV_plot <- function(data_list,spatialDelta=0.05,newColors = F){
 
   y <- 1:length(SGWB2)
   dat <- data.frame(x=y,y=c(x1,x2),group = as.factor(rep(c("Empirical","Theoretical"),each=length(y))))
-  p <- ggplot(dat,aes(x=x,y=y,group=group,color = group))+geom_line()+
-    theme_minimal()+labs(x="Index of filtered spatial grid",y="Rescaled realized volatility",color=NULL)+
-    theme(legend.position = "bottom")
+  if(newColors){
+    p <- ggplot(dat,aes(x=x,y=y,group=group,color = group))+geom_line()+
+      theme_minimal()+labs(x="Index of filtered spatial grid",y="Rescaled realized volatility",color=NULL)+
+      theme(legend.position = "bottom")+
+      scale_fill_manual(values=adobeColorsDiscrete)
+  } else {
+    p <- ggplot(dat,aes(x=x,y=y,group=group,color = group))+geom_line()+
+      theme_minimal()+labs(x="Index of filtered spatial grid",y="Rescaled realized volatility",color=NULL)+
+      theme(legend.position = "bottom")
+  }
 
 
   dat$index <- SGWB2
   dat2 <- data.frame(deviation = abs(x1-x2),index = SGWB2)
 
-  p2 <- ggplot(dat2,aes(x=index,y=deviation,color=deviation))+geom_line()+
-    theme_minimal()+labs(x="Index of filtered spatial grid",y="Deviation of theoretical and empirical results")+
-    theme(legend.position = "none")
+  
+  if(newColors){
+    p2 <- ggplot(dat2,aes(x=index,y=deviation,color=deviation))+geom_line()+
+      theme_minimal()+labs(x="Index of filtered spatial grid",y="Deviation of theoretical and empirical results")+
+      theme(legend.position = "none")+
+      scale_colour_gradientn(colours = darkmint)
+  } else {
+    p2 <- ggplot(dat2,aes(x=index,y=deviation,color=deviation))+geom_line()+
+      theme_minimal()+labs(x="Index of filtered spatial grid",y="Deviation of theoretical and empirical results")+
+      theme(legend.position = "none")
+  }
   return(list(SG=SGWB , data = dat,deviation = dat2,plot = p,deviation_plot = p2))
 }
