@@ -10,7 +10,7 @@ estimateParametersSPDEMulti(
   kappa = NA,
   eta = NA,
   alphaDash = NA,
-  spatialDelta = NA,
+  spatialDelta = 0.05,
   indexset = NA,
   ignoreWarnings = F
 )

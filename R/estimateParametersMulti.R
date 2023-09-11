@@ -14,7 +14,7 @@
 #' @return a named numeric vector denoting the respective estimate. For method \code{"OracleSigma"} the returned value denotes the estimation of 'sigma^2'. For method \code{"SigmaAndKappa"} the returned value denotes the estimated quotient theta1/theta2 of the respective axis.
 #' For the method \code{"alphaDash"} returns the estimate for 'alphaDash'. \code{"all"} first estimates 'alphaDash' and based on this estimate 'sigma0^2' and each 'kappa'.
 #' See references for details on estimation methods.
-#' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti], [SecondOrderSPDEMulti::MCSPDESamplesMulti],[SecondOrderSPDEMulti::SecondOrderSPDEMulti], 
+#' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti], [SecondOrderSPDEMulti::MCSPDESamplesMulti],[SecondOrderSPDEMulti::SecondOrderSPDEMulti],
 #' @examples
 #' d <- 2
 #' N <- 10000
