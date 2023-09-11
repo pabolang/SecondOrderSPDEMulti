@@ -22,7 +22,7 @@ Further, we consider a Dirichlet boundary condition and an initial condition $\x
 By using this package, we can simply simulate a SPDE model on an equidistant discrete $N\times M^d$ grid, 
 where $N$ denotes the temporal and $M$ the spatial resolution on each of the $d$ spatial axes, using the function `simulateSPDEmodel`:
 ```r
-library(ParabolicSPDEs;ulti)
+library(ParabolicSPDEsMulti)
 d <- 2
 N <- 1000
 M <- 10
