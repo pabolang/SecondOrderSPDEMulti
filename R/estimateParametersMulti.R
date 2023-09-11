@@ -40,7 +40,7 @@
 
 
 
-estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=NA,alphaDash=NA,spatialDelta=NA,indexset=NA,ignoreWarnings=F){
+estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=NA,alphaDash=NA,spatialDelta=0.05,indexset=NA,ignoreWarnings=F){
 
   if(!(estimationMethod %in% c("OracleSigma","SigmaAndKappa","alphaDash","all")) ){
     stop("'estimationMethod' must be either 'OracleSigma', 'SigmaAndKappa', 'alphaDash', or 'all'.")
