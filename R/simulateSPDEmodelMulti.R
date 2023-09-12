@@ -20,6 +20,7 @@
 #' @param path_approx_var a string for locating the folder of the approximated variance to be saved. Only being used, if 'save_approx_var' is true. Only of use when method is 'replacement'.
 #' @param save_em_data a Boolean variable being 'F' by default. If being 'T', the generated orthonormal system is going to be saved. Therefore the parameter 'name_em_data' needs to be specified as a string. Only of use when method is 'replacement'.
 #' @param path_em_data a string for locating the folder of the data to be saved. Only being used, if 'save_em_data' is true. Only of use when method is 'replacement'.
+#' @param numCores specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.
 #' @keywords Sample of one SPDE in multiple space dimensions
 #' @references PhD thesis Bossert, P.
 #' @export
@@ -48,7 +49,8 @@ simulateSPDEmodelMulti <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpati
                                    approx_var=NA,
                                    save_approx_var=F,path_approx_var="",
                                    save_em_data=F,path_em_data="",
-                                   method="replacement"){
+                                   method="replacement",
+                                   numCores=NA){
   if (!require("pacman")) {
     install.packages("pacman")
     require(pacman)
@@ -56,7 +58,9 @@ simulateSPDEmodelMulti <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpati
     require(pacman)
   }
   pacman::p_load(dplyr, pbmcapply,data.table)
-  numCores <- detectCores() - 1
+  if(is.na(numCores)){
+    numCores <- detectCores() - 1
+  }
 
   is.naturalnumber <-
     function(x, tol = .Machine$double.eps^0.5)  x > tol & abs(x - round(x)) < tol

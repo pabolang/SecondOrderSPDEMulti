@@ -21,7 +21,8 @@ simulateSPDEmodelMulti(
   path_approx_var = "",
   save_em_data = F,
   path_em_data = "",
-  method = "replacement"
+  method = "replacement",
+  numCores = NA
 )
 }
 \arguments{
@@ -58,6 +59,8 @@ simulateSPDEmodelMulti(
 \item{path_em_data}{a string for locating the folder of the data to be saved. Only being used, if 'save_em_data' is true. Only of use when method is 'replacement'.}
 
 \item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the multi-dimensional replacement method only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
+
+\item{numCores}{specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.}
 
 \item{xi}{initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.}
 
