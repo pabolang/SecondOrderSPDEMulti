@@ -13,7 +13,8 @@ variance_approx(
   alphaDash,
   numberOfSpatialPoints,
   L,
-  K
+  K,
+  numCores = NA
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ variance_approx(
 \item{L}{a natural number indicating the replacement bound LM dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.}
 
 \item{K}{a natural number greater 'L' denoting the cut-off if the variance calculation for the replacement random variables (only of use when method is 'replacement'). 'K' is set to be 'L+10' by default. A too small choice of 'K' produces a bias of the data.}
+
+\item{numCores}{specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.}
 }
 \value{
 A vector containing the approximated variance

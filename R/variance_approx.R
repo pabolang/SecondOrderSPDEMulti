@@ -9,6 +9,7 @@
 #' @param numberOfSpatialPoints number of equidistant spatial points M on each axis, where we consider the domain \code{[0,1]}.
 #' @param L a natural number indicating the replacement bound LM dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.
 #' @param K a natural number greater 'L' denoting the cut-off if the variance calculation for the replacement random variables (only of use when method is 'replacement'). 'K' is set to be 'L+10' by default. A too small choice of 'K' produces a bias of the data.
+#' @param numCores specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.
 #' @export
 #' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti]
 #' @return A vector containing the approximated variance
@@ -26,7 +27,7 @@
 #' va <- variance_approx(d,theta0,nu,eta,sigma,alphaDash,M,L,K)
 
 
-variance_approx <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpatialPoints,L,K){
+variance_approx <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpatialPoints,L,K,numCores=NA){
 
   if (!require("pacman")) {
     install.packages("pacman")
@@ -71,11 +72,13 @@ variance_approx <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpatialPoint
   }
 
   pacman::p_load(dplyr, pbmcapply,data.table)
-  numCores <- detectCores() - 1
+
 
   M <- numberOfSpatialPoints
   M_df <- do.call(CJ,replicate(d,seq(1,(M-1)),F))
-
+  if(is.na(numCores)){
+    numCores <- detectCores() - 1
+  }
 
   lambdall <- function(mm,theta0,nu,eta){
     return(-theta0+sum(nu^2)/(4*eta)+pi^2*eta*sum(mm^2))

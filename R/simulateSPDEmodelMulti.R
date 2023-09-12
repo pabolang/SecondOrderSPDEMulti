@@ -237,7 +237,7 @@ simulateSPDEmodelMulti <- function(d,theta0,nu,eta,sigma,alphaDash,numberOfSpati
     if(sum(is.na(approx_var))==1){
       print("Calculate Approximated Variance:")
       if(is.na(K)){K=L+10}
-      variance_approx_data <- variance_approx(d,theta0,nu,eta,sigma,alphaDash,numberOfSpatialPoints,L,K)
+      variance_approx_data <- variance_approx(d,theta0,nu,eta,sigma,alphaDash,numberOfSpatialPoints,L,K,numCores)
 
       if(save_approx_var){
         saveRDS(variance_approx_data,paste(path_approx_var,".RDS",sep=""))
