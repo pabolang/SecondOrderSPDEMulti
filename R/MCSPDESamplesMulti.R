@@ -10,7 +10,7 @@
 #' @return A list of the returns of [SecondOrderSPDEMulti::simulateSPDEmodelMulti].
 #' @examples
 #' reps <- 10
-#' d <- 2 
+#' d <- 2
 #' N <- 1000
 #' M <- 10
 #' theta0 <- 0
@@ -28,7 +28,8 @@ MCSPDESamplesMulti <- function(repetitions,saveData=F,start=1,save_path="",d,the
                           approx_var=NA,
                           save_approx_var=F,path_approx_var="",
                           save_em_data=F,path_em_data="",
-                          mehtod="replacement"){
+                          mehtod="replacement",
+                          numCores = NA){
 
   if(saveData){
     end <- repetitions + start -1
@@ -37,7 +38,7 @@ MCSPDESamplesMulti <- function(repetitions,saveData=F,start=1,save_path="",d,the
                               approx_var,
                               save_approx_var,path_approx_var,
                               save_em_data,path_em_data,
-                              mehtod)
+                              mehtod,numCores)
       saveRDS(res,paste(save_path,"/dat",i,".RDS",sep=""))
     })
   } else {
@@ -46,7 +47,7 @@ MCSPDESamplesMulti <- function(repetitions,saveData=F,start=1,save_path="",d,the
                               approx_var,
                               save_approx_var,path_approx_var,
                               save_em_data,path_em_data,
-                              mehtod)
+                              mehtod,numCores)
     })
     return(MC_list)
   }

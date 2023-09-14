@@ -25,7 +25,8 @@ MCSPDESamplesMulti(
   path_approx_var = "",
   save_em_data = F,
   path_em_data = "",
-  mehtod = "replacement"
+  mehtod = "replacement",
+  numCores = NA
 )
 }
 \arguments{
@@ -41,7 +42,7 @@ Simulate Monte-Carlo samples of a SPDE model in multiple space dimension on a di
 }
 \examples{
 reps <- 10
-d <- 2 
+d <- 2
 N <- 1000
 M <- 10
 theta0 <- 0
