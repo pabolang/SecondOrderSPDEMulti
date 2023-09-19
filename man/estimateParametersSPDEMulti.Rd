@@ -25,6 +25,8 @@ If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. 
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
+\item{ignoreWarnings}{if True, the statistical warnings are suppressed. Default is False.}
+
 \item{...}{further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.}
 }
 \value{

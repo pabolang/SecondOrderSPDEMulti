@@ -7,6 +7,7 @@
 #' If \code{sigma and kappa} are known choose \code{"SigmaAndKappa"} and provide the known parameter \code{alphaDash} as well as a \code{indexset} satisfying the respective Assumptions.
 #' If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. For \code{"alphaDash"} provide 'spatialDelta' and for \code{"all"} provide 'spatialDelta' and 'indexset'.
 #' @param spatialDelta a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
+#' @param ignoreWarnings if True, the statistical warnings are suppressed. Default is False.
 #' @param ... further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.
 #' @keywords Parameter Estimation for SPDEs.
 #' @references PhD thesis  Bossert, P.
@@ -150,8 +151,8 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
     d <- dim(SG)[2]
 
     if(!ignoreWarnings){
-      if(n<= m^((d+2)/alphaDash)){
-        stop("Statistical Assumptions are not satisfied! Length of 'indexset' with a  power of ((d/2)/'alphaDash') must  less than N")
+      if(m > n^((1-alphaDash)/(d+2))){
+        stop("Statistical Assumptions are not satisfied! Length of 'indexset'  must  less than N^((1-alphaDash)/(d+2))")
       }
     }
 
