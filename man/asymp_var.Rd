@@ -28,7 +28,7 @@ a value/matrix containing the asymptotic variance of the provided estimation met
 Generates the asymptotic variance of the parameter estimators in the multi-dimensional SPDE model.
 }
 \examples{
-
+library(data.table)
 d <- 2
 alphaDash <- 0.5
 sigma_0_squared <- 1
