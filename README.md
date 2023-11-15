@@ -1,6 +1,6 @@
 # SecondOrderSPDEMulti
 
-Simulate and plot multi-dimensional linear second-order SPDE models. This R-package also provides estimation methods for estimating and the natural parameters in this model.
+Simulate and plot multi-dimensional linear second-order SPDE models as introduced in [Bossert, P. (2023) Parameter estimation for second-order SPDEs in multiple space dimensions](https://arxiv.org/abs/2310.17828). This R-package also provides estimation methods for estimating and the natural parameters within this model.
 
 ## Installation
 ```r
@@ -16,7 +16,7 @@ where $\vartheta_0,\nu_1,\ldots,\nu_d\in\mathbb{R}$, $\eta,\sigma>0$
 and a cylindrical Brownian motion $B_t(y)$ within a Sobolev space 
 on the spatial domain $\[0,1\]^d$. The corresponding differential operator is given by
 $$A_\vartheta = \eta \sum_{l=1}^d \frac{\partial}{\partial y_l^2}+\sum_{l=1}^d \nu_l\frac{\partial}{\partial y_l}+\vartheta_0. $$
-Further, we consider a Dirichlet boundary condition and an initial condition $\xi\equiv 0$.
+Furthermore, we consider a Dirichlet boundary condition and an initial condition $\xi\equiv 0$.
 
 
 By using this package, we can simply simulate a SPDE model on an equidistant discrete $N\times M^d$ grid, 
@@ -52,4 +52,4 @@ plot_SPDEMulti(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0
 
 
 For creating multiple SPDE samples, use the function `MCSPDESamplesMulti`. 
-This package also includes the function `estimateParametersSPDEMulti` for estimating the parameters of a SPDE model. For the respective statistical assumptions, see the documentation.
+This package also includes the function `estimateParametersSPDEMulti` for estimating the parameters of a SPDE model. For the respective statistical assumptions, see the documentation or [Bossert, P. (2023) Parameter estimation for second-order SPDEs in multiple space dimensions](https://arxiv.org/abs/2310.17828).
