@@ -52,4 +52,4 @@ plot_SPDEMulti(data_list = res, coord_plot = 2, spatialCoordsRemainingAxes = c(0
 
 
 For creating multiple SPDE samples, use the function `MCSPDESamplesMulti`. 
-This package also includes the function `estimateParametersSPDEMulti` for estimating the parameters of a SPDE model. For the respective statistical assumptions, see the documentation or [Bossert, P. (2023) Parameter estimation for second-order SPDEs in multiple space dimensions](https://arxiv.org/abs/2310.17828).
+This package also includes the function `estimateParametersSPDEMulti` for estimating the parameters of a SPDE model. For the respective statistical assumptions, see the documentation or [Bossert, P. (2023) Parameter estimation for second-order SPDEs in multiple space dimensions](https://arxiv.org/abs/2310.17828). For further options and functions use the documentation starting with the overview function `SecondOrderSPDEMulti`.
