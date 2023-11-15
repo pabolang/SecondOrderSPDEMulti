@@ -23,3 +23,6 @@ Upsilon <- function(alphaDash,d,n=10000){
 }
 
 
+
+
+

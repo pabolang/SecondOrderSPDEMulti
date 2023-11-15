@@ -43,8 +43,8 @@
 
 estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=NA,alphaDash=NA,spatialDelta=0.05,indexset=NA,ignoreWarnings=F){
 
-  if(!(estimationMethod %in% c("OracleSigma","SigmaAndKappa","alphaDash","all")) ){
-    stop("'estimationMethod' must be either 'OracleSigma', 'SigmaAndKappa', 'alphaDash', or 'all'.")
+  if(!(estimationMethod %in% c("OracleSigma","SigmaAndKappa","alphaDash","all","quarticitySigma")) ){
+    stop("'estimationMethod' must be either 'OracleSigma', 'SigmaAndKappa', 'alphaDash','quarticitySigma', or 'all'.")
   }
   if (!require("pacman")) {
     install.packages("pacman")
@@ -88,6 +88,17 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
     return(erg)
   }
 
+
+  RV2 <- function(yIndex,dat){
+    datPath <- dat[yIndex,]
+    n <- length(datPath)
+    datPath1 <- datPath[-1]
+    datPath2 <- datPath[-n]
+
+    erg <- sum((datPath1-datPath2)^4)
+    return(erg)
+  }
+
   RV_thinGrid <- function(yIndex,dat){
     if((dim(dat)[2]-1)%%2 != 0 ){
       dat <- dat[,1:dim(dat)[2]-1]
@@ -123,6 +134,17 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
     return(erg/rescale)
   }
 
+  V2 <- function(dat,alphaDash,SG,kappa,delta){
+    N <- dim(dat)[2]-1
+    index <- y_WB_index(SG,delta)
+    l <- lapply(index,function(i){
+      RV2(i,dat)*exp(2*sum(kappa*SG[i,]))
+    })
+    erg <- sum(unlist(l))
+    rescale <- N*(1/N)^(2*alphaDash)
+    return(erg/rescale)
+  }
+
   hat_sigma_squared <- function(data,SG,delta,alphaDash,kappa,eta){
     N <- dim(data)[2]-1
     d <- dim(SG)[2]
@@ -137,6 +159,15 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
     d <- dim(SG)[2]
     sp <- RV(yIndex,dat)*exp(sum(kappa*SG[yIndex,]))/(N*(1/N)^alphaDash)
     fac <- gamma(d/2)*alphaDash*2^d*(pi*eta)^(d/2)/(gamma(1-alphaDash))
+    return(sp*fac)
+  }
+
+  hat_quarticity <- function(data,SG,delta,alphaDash,kappa,eta){
+    N <- dim(data)[2]-1
+    d <- dim(SG)[2]
+    M <- length(y_WB_index(SG,delta))
+    sp <- V2(data,alphaDash,SG,kappa,delta)
+    fac <- (gamma(d/2)*alphaDash*2^d*(pi*eta)^(d/2)/(gamma(1-alphaDash)))^(2)*1/(3*M)
     return(sp*fac)
   }
 
@@ -183,6 +214,8 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
 
 
 
+
+
   if(estimationMethod == 'OracleSigma'){
     se <- hat_sigma_squared(dat,SG,delta,alphaDash,kappa,eta)
     names(se) <- "sigma_0Squared Est"
@@ -197,6 +230,11 @@ estimateParametersSPDEMulti <- function(data_list,estimationMethod,kappa=NA,eta=
     ae <- hat_alpha(dat,SG,delta)
     names(ae) <- "alphaDash Est"
     return(list(estimate = ae, filteredSGIndices = y_WB_index(SG,delta)))
+  }
+  if(estimationMethod == 'quarticitySigma'){
+    qe <- hat_quarticity(dat,SG,delta,alphaDash,kappa,eta)
+    names(qe) <- "quarticity Est"
+    return(list(estimate = qe, filteredSGIndices = y_WB_index(SG,delta)))
   }
   if(estimationMethod == 'all'){
     ad <- hat_alpha(dat,SG,delta)
