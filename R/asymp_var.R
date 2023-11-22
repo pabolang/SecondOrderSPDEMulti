@@ -1,14 +1,15 @@
-#' Asymptotic variacne function
+#' Asymptotic variance function
 #'
 #' Generates the asymptotic variance of the parameter estimators in the multi-dimensional SPDE model.
-#' @param estimationMethod If \code{"OracleSigma"} is chosen, the funciton calculates the asymptotic variance for the oracle-volatility estimator. Therefore, provide the true parameters \code{alphaDah,sigma} of the model.
+#' @param estimationMethod If \code{"OracleSigma"} is chosen, the function calculates the asymptotic variance for the oracle-volatility estimator. Therefore, provide the true parameters \code{alphaDah,sigma} of the model.
 #' If \code{"SigmaAndKappa"} is chosen, please provide the true parameters \code{alphaDash, sigma_0_squared,indexset,SG}. Note that in this case, the function returns the approximated asymptotic variance, dependent on the provided spatial coordinates.
-#' For additional information, see [SecondOrderSPDEMulti::estimateParametersMulti].
+#' For additional information, see [SecondOrderSPDEMulti::estimateParametersMulti] or the references.
 #' @param d  Spatial dimension of the SPDE model.
 #'
 #' @keywords asymptotic variance
 #' @export
 #' @seealso [SecondOrderSPDEMulti::SecondOrderSPDEMulti],[SecondOrderSPDEMulti::estimateParametersMulti].
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 #' @return a value/matrix containing the asymptotic variance of the provided estimation method.
 
 #' @examples

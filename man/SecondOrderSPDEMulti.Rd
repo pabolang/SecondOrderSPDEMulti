@@ -8,7 +8,10 @@ SecondOrderSPDEMulti()
 }
 \description{
 This package includes the simulation of SPDE models, \link{simulateSPDEmodelMulti} and \link{MCSPDESamplesMulti}, as well as a quick-plot function \link{plot_SPDEMulti} and a function for estimating the natural parameters of SPDE models \link{estimateParametersMulti}.
-Furthermore, this package provides the following help-fucntions: \link{RV_plot}, \link{asymp_var}, \link{Lambda}, \link{Upsilon}, \link{variance_approx}, \link{get_filtered_SP} and \link{get_filtered_SP_index}.
+Furthermore, this package provides the following help-functions: \link{RV_plot}, \link{asymp_var}, \link{Lambda}, \link{Upsilon}, \link{variance_approx}, \link{get_filtered_SP} and \link{get_filtered_SP_index}.
+}
+\references{
+Bossert, P., 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{simulateSPDEmodelMulti}, \link{MCSPDESamplesMulti}, \link{SPDE_plot} and \link{estimateParametersMulti}

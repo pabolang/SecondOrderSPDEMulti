@@ -1,14 +1,14 @@
 #' Plot realized volatility against the theoretical result
 #'
 #' Provides a plot for the realized volatility statistics against the theoretical results. In addition it provides a plot for the deviation of theoretical and empirical results.
-#' @param data_list return of the function 'simulateSPDEmodelMulti' or a list containing the returns of the function 'simulateSPDEmodelMulti'.
+#' @param data_list return of the function \code{simulateSPDEmodelMulti} or a list containing the returns of the function \code{simulateSPDEmodelMulti}.
 #' @param spatialDelta  a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
 #' @param newColors if FALSE, it changes the colors of the returned plots. Default is TRUE.
 #' @keywords Plotting realized volatilities
-#' @references PhD thesis Bossert, P.
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 #' @export
 #' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti],[SecondOrderSPDEMulti::SecondOrderSPDEMulti]
-#' @return a list with 2 plots, the main plot displays the theoretical and empirical realized volatilities. The other plot contains its deviation. Also both data sets for creating these plots are provided.
+#' @return a list containing 2 plots and datasets. The main plot displays the theoretical and empirical realized volatilities. The other plot contains its deviation. Also both data sets for creating these plots are provided.
 
 #' @examples
 #' d <- 2

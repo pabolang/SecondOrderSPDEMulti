@@ -1,20 +1,19 @@
-#' Estimate the parameters of a secon-order SPDE model in multiple space dimensions
+#' Estimate the parameters of a second-order SPDE model in multiple space dimensions
 #'
-#' Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the d-dimensional SPDE model. Non-oracle estimations for second-order SPDEs are based on a log-linear model.
+#' Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the d-dimensional SPDE model. Non-oracle estimations for second-order SPDEs are based on a log-linear model. For further information, see reference Bossert, P. (2023).
 #' @param data_list return of the function 'simulateSPDEmodelMulti' or a list containing multiple returns of the function 'simulateSPDEmodelMulti'.
-#' @param estimationMethod a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose \code{"OracleSigma"} and provide \code{delta,alphaDash,kappa,eta} respectively.
-#' If alphaDash is unknown, choose 'alphaDash'. No additional information is needed.
-#' If \code{sigma and kappa} are known choose \code{"SigmaAndKappa"} and provide the known parameter \code{alphaDash} as well as a \code{indexset} satisfying the respective Assumptions.
-#' If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. For \code{"alphaDash"} provide 'spatialDelta' and for \code{"all"} provide 'spatialDelta' and 'indexset'.
+#' @param estimationMethod a string indicating the parameter/parameters to be estimated. If only 'sigma' is unknown choose \code{"OracleSigma"} and provide \code{delta,alphaDash,kappa,eta}, respectively.
+#' If 'sigma' and 'kappa' are known choose \code{"SigmaAndKappa"} and provide the known parameter \code{alphaDash} as well as a \code{indexset} satisfying the respective Assumptions.
+#' If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. For \code{"alphaDash"} provide \code{spatialDelta} and for \code{"all"} provide \code{spatialDelta} and \code{indexset}.
 #' @param spatialDelta a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.
 #' @param ignoreWarnings if True, the statistical warnings are suppressed. Default is False.
 #' @param ... further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.
 #' @keywords Parameter Estimation for SPDEs.
-#' @references PhD thesis  Bossert, P.
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'.
 #' @export
-#' @return a named numeric vector denoting the respective estimate. For method \code{"OracleSigma"} the returned value denotes the estimation of 'sigma^2'. For method \code{"SigmaAndKappa"} the returned value denotes the estimated quotient theta1/theta2 of the respective axis.
+#' @return a named numeric vector denoting the respective estimate. For method \code{"OracleSigma"} the returned value denotes the estimation of 'sigma^2'. For method \code{"SigmaAndKappa"} the returned values denote the estimate of 'sigma^2' and the estimated quotient 'theta1/theta2' of the respective axis.
 #' For the method \code{"alphaDash"} returns the estimate for 'alphaDash'. \code{"all"} first estimates 'alphaDash' and based on this estimate 'sigma0^2' and each 'kappa'.
-#' See references for details on estimation methods.
+#' See Bossert, P. (2023) for details on estimation methods.
 #' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti], [SecondOrderSPDEMulti::MCSPDESamplesMulti],[SecondOrderSPDEMulti::SecondOrderSPDEMulti],
 #' @examples
 #' d <- 2

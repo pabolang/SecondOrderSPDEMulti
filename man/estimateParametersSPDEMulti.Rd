@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimateParametersMulti.R
 \name{estimateParametersSPDEMulti}
 \alias{estimateParametersSPDEMulti}
-\title{Estimate the parameters of a secon-order SPDE model in multiple space dimensions}
+\title{Estimate the parameters of a second-order SPDE model in multiple space dimensions}
 \usage{
 estimateParametersSPDEMulti(
   data_list,
@@ -18,10 +18,9 @@ estimateParametersSPDEMulti(
 \arguments{
 \item{data_list}{return of the function 'simulateSPDEmodelMulti' or a list containing multiple returns of the function 'simulateSPDEmodelMulti'.}
 
-\item{estimationMethod}{a string indicating the parameter/parameters to be estimated. If only sigma is unknown choose \code{"OracleSigma"} and provide \code{delta,alphaDash,kappa,eta} respectively.
-If alphaDash is unknown, choose 'alphaDash'. No additional information is needed.
-If \code{sigma and kappa} are known choose \code{"SigmaAndKappa"} and provide the known parameter \code{alphaDash} as well as a \code{indexset} satisfying the respective Assumptions.
-If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. For \code{"alphaDash"} provide 'spatialDelta' and for \code{"all"} provide 'spatialDelta' and 'indexset'.}
+\item{estimationMethod}{a string indicating the parameter/parameters to be estimated. If only 'sigma' is unknown choose \code{"OracleSigma"} and provide \code{delta,alphaDash,kappa,eta}, respectively.
+If 'sigma' and 'kappa' are known choose \code{"SigmaAndKappa"} and provide the known parameter \code{alphaDash} as well as a \code{indexset} satisfying the respective Assumptions.
+If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. For \code{"alphaDash"} provide \code{spatialDelta} and for \code{"all"} provide \code{spatialDelta} and \code{indexset}.}
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
@@ -30,12 +29,12 @@ If none of the parameters are known, choose \code{"alphaDash"} or \code{"all"}. 
 \item{...}{further arguments depending on the chosen estimation method. See \code{estiamtionmethod} or the examples below.}
 }
 \value{
-a named numeric vector denoting the respective estimate. For method \code{"OracleSigma"} the returned value denotes the estimation of 'sigma^2'. For method \code{"SigmaAndKappa"} the returned value denotes the estimated quotient theta1/theta2 of the respective axis.
+a named numeric vector denoting the respective estimate. For method \code{"OracleSigma"} the returned value denotes the estimation of 'sigma^2'. For method \code{"SigmaAndKappa"} the returned values denote the estimate of 'sigma^2' and the estimated quotient 'theta1/theta2' of the respective axis.
 For the method \code{"alphaDash"} returns the estimate for 'alphaDash'. \code{"all"} first estimates 'alphaDash' and based on this estimate 'sigma0^2' and each 'kappa'.
-See references for details on estimation methods.
+See Bossert, P. (2023) for details on estimation methods.
 }
 \description{
-Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the d-dimensional SPDE model. Non-oracle estimations for second-order SPDEs are based on a log-linear model.
+Oracle and non-oracle estimations for SPDE models. All estimators are consistent and estimate the natural parameters of the d-dimensional SPDE model. Non-oracle estimations for second-order SPDEs are based on a log-linear model. For further information, see reference Bossert, P. (2023).
 }
 \examples{
 d <- 2
@@ -59,7 +58,7 @@ estimateParametersSPDEMulti(res,estimationMethod="alphaDash",spatialDelta=0.05)
 estimateParametersSPDEMulti(res,estimationMethod="all",spatialDelta=0.05,indexset = c(16,53,57))
 }
 \references{
-PhD thesis  Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'.
 }
 \seealso{
 \link{simulateSPDEmodelMulti}, \link{MCSPDESamplesMulti},\link{SecondOrderSPDEMulti},

@@ -2,7 +2,7 @@
 % Please edit documentation in R/asymp_var.R
 \name{asymp_var}
 \alias{asymp_var}
-\title{Asymptotic variacne function}
+\title{Asymptotic variance function}
 \usage{
 asymp_var(
   estimationMethod,
@@ -15,9 +15,9 @@ asymp_var(
 )
 }
 \arguments{
-\item{estimationMethod}{If \code{"OracleSigma"} is chosen, the funciton calculates the asymptotic variance for the oracle-volatility estimator. Therefore, provide the true parameters \code{alphaDah,sigma} of the model.
+\item{estimationMethod}{If \code{"OracleSigma"} is chosen, the function calculates the asymptotic variance for the oracle-volatility estimator. Therefore, provide the true parameters \code{alphaDah,sigma} of the model.
 If \code{"SigmaAndKappa"} is chosen, please provide the true parameters \code{alphaDash, sigma_0_squared,indexset,SG}. Note that in this case, the function returns the approximated asymptotic variance, dependent on the provided spatial coordinates.
-For additional information, see \link{estimateParametersMulti}.}
+For additional information, see \link{estimateParametersMulti} or the references.}
 
 \item{d}{Spatial dimension of the SPDE model.}
 }
@@ -35,6 +35,9 @@ sigma_0_squared <- 1
 indexset <- c(15,47,83)
 SG <- do.call(CJ,replicate(d,seq(0,1,1/10),F))
 av <- asymp_var("SigmaAndKappa",d,alphaDash=alphaDash,sigma_0_squared=sigma_0_squared,indexset = indexset,SG = SG)
+}
+\references{
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{SecondOrderSPDEMulti},\link{estimateParametersMulti}.

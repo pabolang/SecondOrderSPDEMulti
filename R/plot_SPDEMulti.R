@@ -4,8 +4,8 @@
 #'
 #' @param data_list the return of the the SPDE simulation, see [SecondOrderSPDEMulti::simulateSPDEmodelMulti].
 #' @param coord_plot a integer in the range of 1 to d, indicating the respective axis to be ploted.
-#' @param spatialCoordsRemainingAxes a optional (d-1)-dimensional vector with spatial coordinates on the other axis to be fixed. For instance: 3-dimensions (d=3) and we want to plot the 2. axis, where we fix the 1. axis at 0.3 and the 3. axis at 0.7. Then, 'spatialCoordsRemainingAxes'=c(0.3,0.7). If 'spatialCoordsRemainingAxes'=NA (default), then the mid point on each remaining axis is selected. Note, that the chosen values for the remaining axes have to be on the simulated grid.
-#' @param scale a optional parameter indicating the zoom of the camera position.
+#' @param spatialCoordsRemainingAxes an optional (d-1)-dimensional vector with spatial coordinates on the other axis to be fixed. For instance: 3-dimensions (d=3) and we want to plot the 2. axis, where we fix the 1. axis at 0.3 and the 3. axis at 0.7. Then, 'spatialCoordsRemainingAxes'=c(0.3,0.7). If 'spatialCoordsRemainingAxes'=NA (default), then the mid point on each remaining axis is selected. Note, that the chosen values for the remaining axes have to be on the simulated grid.
+#' @param scale an optional parameter indicating the zoom of the camera position.
 #' @param cameraPosition an optional 3-dimensional parameter indicating the camera position. See 'plotly' documentation for further information.
 #'
 #' @return a plotly plot of the generated SPDE model.
@@ -48,14 +48,14 @@ plot_SPDEMulti <- function(data_list,coord_plot,spatialCoordsRemainingAxes=NA,
     return(colors[n:1])
   }
   darkmint2 <- reverseColorSheme(darkmint)
-  
+
   # if(!is.na(spatialCoordsRemainingAxes)){
   #   if(!(spatialCoordsRemainingAxes %in% y)){
   #     stop("'spatialCoordsRemainingAxes' has to be in seq(0,1,1/spatialPoints)!")
   #   }
   # }
-  
-  
+
+
   if (!require("pacman")) {
     install.packages("pacman")
     require(pacman)
@@ -64,22 +64,22 @@ plot_SPDEMulti <- function(data_list,coord_plot,spatialCoordsRemainingAxes=NA,
   }
   pacman::p_load(dplyr, pbmcapply,plotly)
   numCores <- detectCores()-1
-  
-  
-  
-  
+
+
+
+
   if(sum(is.na(spatialCoordsRemainingAxes))==1){
     index <- round((M+1)/2)
     spatialCoordsRemainingAxes <- rep(y[index],d-1)
   }
-  
-  
+
+
   l <- lapply(1:length(y), function(i){
     c(y[i],spatialCoordsRemainingAxes)
   })
   SG2 <- do.call(rbind,l)
-  
-  
+
+
   get_perm <- function(select,d){
     a <- 1:d
     for(i in 1:d){
@@ -98,7 +98,7 @@ plot_SPDEMulti <- function(data_list,coord_plot,spatialCoordsRemainingAxes=NA,
     unlist(l2)
   },mc.cores = numCores)
   indices <- unique(unlist(l))
-  
+
   dat_plot <- dat[indices,]
   x <- y
   p <- plot_ly(x = ~t, y = ~x, z = ~dat_plot,width = 1000, height = 1000) %>%

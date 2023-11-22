@@ -26,48 +26,48 @@ simulateSPDEmodelMulti(
 )
 }
 \arguments{
-\item{d}{a natural number which denotes the spacial dimension. 'd' must be greater 1.}
+\item{d}{a natural number, which denotes the spacial dimension. 'd' must be greater 1.}
 
-\item{theta0}{a real number which controls the drift of the solution field.}
+\item{theta0}{a real number, which controls the drift of the solution field.}
 
-\item{nu}{a real vector of dimension 'd' which controls the curvature of the solution field on each axis respectively.}
+\item{nu}{a real vector of dimension 'd', which controls the curvature of the solution field on each axis, respectively.}
 
-\item{eta}{a real number greater than zero which reduces the noise level of parameter sigma and the curvature effect of parameter \code{nu}.}
+\item{eta}{a real number greater than zero, which reduces the noise level of parameter \code{sigma} and the curvature effect of parameter \code{nu}.}
 
-\item{sigma}{a real number greater than zero which controls the overall noise level of the solution field.}
+\item{sigma}{a real number greater than zero, which controls the overall noise level of the solution field.}
 
-\item{alphaDash}{a real number in \code{(0,1)} controlling the roughness of the sample paths.}
+\item{alphaDash}{a real number in \code{(0,1)}, controlling the roughness of the temporal marginal process.}
 
 \item{numberOfSpatialPoints}{number of equidistant spatial points M on each axis, where we consider the domain \code{[0,1]}.}
 
 \item{numberOfTemporalPoints}{number of equidistant temporal points N in \code{[0,1]}.}
 
-\item{L}{a natural number indicating the replacement bound LM dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.}
+\item{L}{a natural number indicating the replacement bound 'LM', dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.}
 
 \item{K}{a natural number greater 'L' denoting the cut-off if the variance calculation for the replacement random variables (only of use when method is 'replacement'). 'K' is set to be 'L+10' by default. A too small choice of 'K' produces a bias of the data.}
 
-\item{em_data}{a data frame containing every combination of the orthonormal system which is used for the Fourier transform. Alternatively a path of type String can be used.}
+\item{em_data}{a data frame containing every combination of the orthonormal system, which is used for the Fourier transform. Alternatively a String indicating the systems paths to the respective data can be used.}
 
-\item{approx_var}{a vector especially useful when simulating more than one data set. The approximated variance for the replacement random variables can be computed via the function \link{variance_approx}. Alternatively a path of type String to the approx_var type vector can be used. Only of use when method is 'replacement'.}
+\item{approx_var}{a vector containing the approximated variance for the replacement random variables, Especially useful when simulating a Monte Carlo study. The approximated variance for the replacement random variables can be computed via the function \link{variance_approx}. Alternatively a String indicating the systems paths to the respective approx_var type vector can be used. Only of use when method equals \code{replacement}.}
 
-\item{save_approx_var}{a Boolean variable being 'F' by default. If being 'T', the generated approximated variance or tghe replacement random varaibles is going to be saved. Therefore the parameter 'name_approx_var' needs to be specified as a string. Only of use when method is 'replacement'.}
+\item{save_approx_var}{a Boolean variable being 'F' by default. If being 'T', the generated approximated variance or the replacement random variables is going to be saved. Therefore the parameter \code{name_approx_var} needs to be specified as a string. Only of use when method equals \code{replacement}.}
 
-\item{path_approx_var}{a string for locating the folder of the approximated variance to be saved. Only being used, if 'save_approx_var' is true. Only of use when method is 'replacement'.}
+\item{path_approx_var}{a string for locating the folder of the approximated variance to be saved. Only being used, if \code{save_approx_var} is true. Only of use when method equals \code{replacement}.}
 
-\item{save_em_data}{a Boolean variable being 'F' by default. If being 'T', the generated orthonormal system is going to be saved. Therefore the parameter 'name_em_data' needs to be specified as a string. Only of use when method is 'replacement'.}
+\item{save_em_data}{a Boolean variable being 'F' by default. If being 'T', the generated orthonormal system is going to be saved. Therefore the parameter \code{name_em_data} needs to be specified as a string. Only of use when method equals \code{replacement}.}
 
-\item{path_em_data}{a string for locating the folder of the data to be saved. Only being used, if 'save_em_data' is true. Only of use when method is 'replacement'.}
+\item{path_em_data}{a string for locating the folder of the data to be saved. Only being used, if \code{save_em_data} is true. Only of use when method equals \code{replacement}.}
 
-\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the multi-dimensional replacement method only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.}
+\item{method}{either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the multi-dimensional replacement method only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}. Note that the usage of \code{method = "cutoff"} comes with dramatically increased runtimes.}
 
 \item{numCores}{specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.}
 
-\item{xi}{initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.}
+\item{xi}{initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}. Note that the usage of \code{method = "cutoff"} comes with dramatically increased runtimes.}
 
 \item{cutoff}{a natural number for the cut-off frequency of the Fourier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}.}
 }
 \value{
-A list containing 'data', 'SG', 'TG' and 'param'. 'data' is a (M+1)^d x (N+1) data-frame of the simulated SPDE model. 'SG' contains the generated spatial grid, where 'TG' the generated temporal grid. 'param' contains the parameters used for the simulation.
+A list containing \code{data}, \code{SG}, \code{TG} and \code{param}. \code{data} is a (M+1)^d x (N+1) data-frame of the simulated SPDE model. \code{SG} contains the generated spatial grid, where \code{TG} contains the generated temporal grid. \code{param} contains the parameters used for the simulation.
 }
 \description{
 Simulate a sample of a SPDE model in d space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial (each axis) points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. Furthermore, the SPDE model is using the Dirichlet boundary condition. The multi-dimensional replacement method only approximates the replacement variance. Therefore the optional parameter 'K' appears. A too small choice of 'K' results in an bias of the simulated data.
@@ -90,16 +90,16 @@ alphaDash=alphaDash,numberOfSpatialPoints=M,numberOfTemporalPoints=N,
 L=L,approx_var=va)
 }
 \references{
-PhD thesis Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{MCSPDESamplesMulti},\link{plot_SPDEMulti},\link{RV_plot},\link{SecondOrderSPDEMulti}.
 }
 \keyword{SPDE}
 \keyword{Sample}
+\keyword{a}
 \keyword{dimensions}
 \keyword{in}
 \keyword{multiple}
 \keyword{of}
-\keyword{one}
 \keyword{space}

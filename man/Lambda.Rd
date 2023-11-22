@@ -2,14 +2,14 @@
 % Please edit documentation in R/Lambda.R
 \name{Lambda}
 \alias{Lambda}
-\title{Calculate Upsilon}
+\title{Calculate Lambda}
 \usage{
 Lambda(alphaDash, cutoff = 10000)
 }
 \arguments{
 \item{n}{natural number for the approximation of the infinite sum. Default is 10000.}
 
-\item{alphaDsh}{a real number in \code{(0,1)} controlling the roughness of the sample paths.}
+\item{alphaDsh}{a real number in \code{(0,1)} controlling the roughness of the temporal marginal process.}
 }
 \value{
 A real number of the approximated constant.
@@ -21,7 +21,7 @@ Approximation of the constant Lambda which results by non-negligible covariances
 Lambda <- Lambda(alphaDash = 1/3)
 }
 \references{
-PhD thesis Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{SecondOrderSPDEMulti}.

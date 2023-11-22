@@ -7,14 +7,14 @@
 RV_plot(data_list, spatialDelta = 0.05, newColors = T)
 }
 \arguments{
-\item{data_list}{return of the function 'simulateSPDEmodelMulti' or a list containing the returns of the function 'simulateSPDEmodelMulti'.}
+\item{data_list}{return of the function \code{simulateSPDEmodelMulti} or a list containing the returns of the function \code{simulateSPDEmodelMulti}.}
 
 \item{spatialDelta}{a real number greater than zero and less than 1/2 for selecting only the data points which are delta away from the Dirichlet boundary condition. The default is 0.05.}
 
 \item{newColors}{if FALSE, it changes the colors of the returned plots. Default is TRUE.}
 }
 \value{
-a list with 2 plots, the main plot displays the theoretical and empirical realized volatilities. The other plot contains its deviation. Also both data sets for creating these plots are provided.
+a list containing 2 plots and datasets. The main plot displays the theoretical and empirical realized volatilities. The other plot contains its deviation. Also both data sets for creating these plots are provided.
 }
 \description{
 Provides a plot for the realized volatility statistics against the theoretical results. In addition it provides a plot for the deviation of theoretical and empirical results.
@@ -40,7 +40,7 @@ p <- RV_plot(res,0.05,nu,eta,sigma,alphaDash)
 p$plot
 }
 \references{
-PhD thesis Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{simulateSPDEmodelMulti},\link{SecondOrderSPDEMulti}

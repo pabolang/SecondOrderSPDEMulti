@@ -38,7 +38,7 @@ MCSPDESamplesMulti(
 A list of the returns of \link{simulateSPDEmodelMulti}.
 }
 \description{
-Simulate Monte-Carlo samples of a SPDE model in multiple space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each repetition uses the "replacement"-method by default, see \link{simulateSPDEmodelMulti}.
+Simulates a Monte-Carlo study of a SPDE model in multiple space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each repetition uses the "replacement"-method by default, see \link{simulateSPDEmodelMulti}.
 }
 \examples{
 reps <- 10
@@ -57,7 +57,7 @@ va <- variance_approx(d,theta0,nu,eta,sigma,alphaDash,M,L,K)
 MCSPDESamplesMulti(repetitions=reps,d=d,theta0=theta0,nu=nu,eta=eta,sigma=sigma,alphaDash=alphaDash,numberOfSpatialPoints=M,numberOfTemporalPoints=N,L=L,approx_var=va)
 }
 \references{
-PhD thesis Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{simulateSPDEmodelMulti},\link{SecondOrderSPDEMulti}.

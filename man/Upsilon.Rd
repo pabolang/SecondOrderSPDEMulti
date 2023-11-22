@@ -23,7 +23,7 @@ Approximation of the constant Upsilon which results by non-negligible covariance
 Upsilon <- Upsilon(d=2, alphaDash = 1/3)
 }
 \references{
-PhD thesis Bossert, P.
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 }
 \seealso{
 \link{SecondOrderSPDEMulti}.

@@ -5,7 +5,7 @@
 #' @param d  natural number which denotes the spacial dimension. 'd' must be greater 1.
 #' @param alphaDsh a real number in \code{(0,1)} controlling the roughness of the sample paths.
 #' @keywords Approximation of Upsilon
-#' @references PhD thesis Bossert, P.
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 #' @export
 #' @seealso [SecondOrderSPDEMulti::SecondOrderSPDEMulti].
 #' @return A real number of the approximated constant.

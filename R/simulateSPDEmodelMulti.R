@@ -1,31 +1,31 @@
 #' Simulate a second-order stochastic partial differential equations in multiple space dimension
 #'
 #' Simulate a sample of a SPDE model in d space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial (each axis) points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. Furthermore, the SPDE model is using the Dirichlet boundary condition. The multi-dimensional replacement method only approximates the replacement variance. Therefore the optional parameter 'K' appears. A too small choice of 'K' results in an bias of the simulated data.
-#' @param d a natural number which denotes the spacial dimension. 'd' must be greater 1.
-#' @param theta0 a real number which controls the drift of the solution field.
-#' @param nu a real vector of dimension 'd' which controls the curvature of the solution field on each axis respectively.
-#' @param eta a real number greater than zero which reduces the noise level of parameter sigma and the curvature effect of parameter \code{nu}.
-#' @param sigma a real number greater than zero which controls the overall noise level of the solution field.
-#' @param alphaDash a real number in \code{(0,1)} controlling the roughness of the sample paths.
+#' @param d a natural number, which denotes the spacial dimension. 'd' must be greater 1.
+#' @param theta0 a real number, which controls the drift of the solution field.
+#' @param nu a real vector of dimension 'd', which controls the curvature of the solution field on each axis, respectively.
+#' @param eta a real number greater than zero, which reduces the noise level of parameter \code{sigma} and the curvature effect of parameter \code{nu}.
+#' @param sigma a real number greater than zero, which controls the overall noise level of the solution field.
+#' @param alphaDash a real number in \code{(0,1)}, controlling the roughness of the temporal marginal process.
 #' @param numberOfSpatialPoints number of equidistant spatial points M on each axis, where we consider the domain \code{[0,1]}.
 #' @param numberOfTemporalPoints number of equidistant temporal points N in \code{[0,1]}.
-#' @param L a natural number indicating the replacement bound LM dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.
-#' @param xi initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}.
+#' @param L a natural number indicating the replacement bound 'LM', dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.
+#' @param xi initial condition. The default is \code{xi = 0}. For general initial condition choose \code{method = "cutoff"}. Note that the usage of \code{method = "cutoff"} comes with dramatically increased runtimes.
 #' @param cutoff a natural number for the cut-off frequency of the Fourier series. Only used when \code{method = "cutoff"}. The default is \code{cutoff=10000}.
-#' @param method either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the multi-dimensional replacement method only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}.
+#' @param method either \code{"replacement"} (Default) or \code{"cutoff"}. Note, that the multi-dimensional replacement method only allows for the initial condition to be zero. For general initial conditions choose \code{method="cutoff"}. Note that the usage of \code{method = "cutoff"} comes with dramatically increased runtimes.
 #' @param K a natural number greater 'L' denoting the cut-off if the variance calculation for the replacement random variables (only of use when method is 'replacement'). 'K' is set to be 'L+10' by default. A too small choice of 'K' produces a bias of the data.
-#' @param em_data a data frame containing every combination of the orthonormal system which is used for the Fourier transform. Alternatively a path of type String can be used.
-#' @param approx_var a vector especially useful when simulating more than one data set. The approximated variance for the replacement random variables can be computed via the function [SecondOrderSPDEMulti::variance_approx]. Alternatively a path of type String to the approx_var type vector can be used. Only of use when method is 'replacement'.
-#' @param save_approx_var a Boolean variable being 'F' by default. If being 'T', the generated approximated variance or tghe replacement random varaibles is going to be saved. Therefore the parameter 'name_approx_var' needs to be specified as a string. Only of use when method is 'replacement'.
-#' @param path_approx_var a string for locating the folder of the approximated variance to be saved. Only being used, if 'save_approx_var' is true. Only of use when method is 'replacement'.
-#' @param save_em_data a Boolean variable being 'F' by default. If being 'T', the generated orthonormal system is going to be saved. Therefore the parameter 'name_em_data' needs to be specified as a string. Only of use when method is 'replacement'.
-#' @param path_em_data a string for locating the folder of the data to be saved. Only being used, if 'save_em_data' is true. Only of use when method is 'replacement'.
+#' @param em_data a data frame containing every combination of the orthonormal system, which is used for the Fourier transform. Alternatively a String indicating the systems paths to the respective data can be used.
+#' @param approx_var a vector containing the approximated variance for the replacement random variables, Especially useful when simulating a Monte Carlo study. The approximated variance for the replacement random variables can be computed via the function [SecondOrderSPDEMulti::variance_approx]. Alternatively a String indicating the systems paths to the respective approx_var type vector can be used. Only of use when method equals \code{replacement}.
+#' @param save_approx_var a Boolean variable being 'F' by default. If being 'T', the generated approximated variance or the replacement random variables is going to be saved. Therefore the parameter \code{name_approx_var} needs to be specified as a string. Only of use when method equals \code{replacement}.
+#' @param path_approx_var a string for locating the folder of the approximated variance to be saved. Only being used, if \code{save_approx_var} is true. Only of use when method equals \code{replacement}.
+#' @param save_em_data a Boolean variable being 'F' by default. If being 'T', the generated orthonormal system is going to be saved. Therefore the parameter \code{name_em_data} needs to be specified as a string. Only of use when method equals \code{replacement}.
+#' @param path_em_data a string for locating the folder of the data to be saved. Only being used, if \code{save_em_data} is true. Only of use when method equals \code{replacement}.
 #' @param numCores specify the cores to be used for simulation. Default (NA) detects the available cores of the PC and uses all cores minus one.
-#' @keywords Sample of one SPDE in multiple space dimensions
-#' @references PhD thesis Bossert, P.
+#' @keywords Sample of a SPDE in multiple space dimensions
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 #' @export
 #' @seealso [SecondOrderSPDEMulti::MCSPDESamplesMulti],[SecondOrderSPDEMulti::plot_SPDEMulti],[SecondOrderSPDEMulti::RV_plot],[SecondOrderSPDEMulti::SecondOrderSPDEMulti].
-#' @return A list containing 'data', 'SG', 'TG' and 'param'. 'data' is a (M+1)^d x (N+1) data-frame of the simulated SPDE model. 'SG' contains the generated spatial grid, where 'TG' the generated temporal grid. 'param' contains the parameters used for the simulation.
+#' @return A list containing \code{data}, \code{SG}, \code{TG} and \code{param}. \code{data} is a (M+1)^d x (N+1) data-frame of the simulated SPDE model. \code{SG} contains the generated spatial grid, where \code{TG} contains the generated temporal grid. \code{param} contains the parameters used for the simulation.
 #' @examples
 #' d <- 2
 #' N <- 1000

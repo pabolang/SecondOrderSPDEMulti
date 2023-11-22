@@ -1,10 +1,11 @@
-#' Calculate Upsilon
+#' Calculate Lambda
 #'
 #' Approximation of the constant Lambda which results by non-negligible covariances of squared increments of two temporal resolutions in the SPDE model.
 #' @param n natural number for the approximation of the infinite sum. Default is 10000.
-#' @param alphaDsh a real number in \code{(0,1)} controlling the roughness of the sample paths.
+#' @param alphaDsh a real number in \code{(0,1)} controlling the roughness of the temporal marginal process.
 #' @keywords Approximation of Lambda
-#' @references PhD thesis Bossert, P.
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
+
 #' @export
 #' @seealso [SecondOrderSPDEMulti::SecondOrderSPDEMulti].
 #' @return A real number of the approximated constant.

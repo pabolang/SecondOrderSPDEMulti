@@ -17,9 +17,9 @@ plot_SPDEMulti(
 
 \item{coord_plot}{a integer in the range of 1 to d, indicating the respective axis to be ploted.}
 
-\item{spatialCoordsRemainingAxes}{a optional (d-1)-dimensional vector with spatial coordinates on the other axis to be fixed. For instance: 3-dimensions (d=3) and we want to plot the 2. axis, where we fix the 1. axis at 0.3 and the 3. axis at 0.7. Then, 'spatialCoordsRemainingAxes'=c(0.3,0.7). If 'spatialCoordsRemainingAxes'=NA (default), then the mid point on each remaining axis is selected. Note, that the chosen values for the remaining axes have to be on the simulated grid.}
+\item{spatialCoordsRemainingAxes}{an optional (d-1)-dimensional vector with spatial coordinates on the other axis to be fixed. For instance: 3-dimensions (d=3) and we want to plot the 2. axis, where we fix the 1. axis at 0.3 and the 3. axis at 0.7. Then, 'spatialCoordsRemainingAxes'=c(0.3,0.7). If 'spatialCoordsRemainingAxes'=NA (default), then the mid point on each remaining axis is selected. Note, that the chosen values for the remaining axes have to be on the simulated grid.}
 
-\item{scale}{a optional parameter indicating the zoom of the camera position.}
+\item{scale}{an optional parameter indicating the zoom of the camera position.}
 
 \item{cameraPosition}{an optional 3-dimensional parameter indicating the camera position. See 'plotly' documentation for further information.}
 }

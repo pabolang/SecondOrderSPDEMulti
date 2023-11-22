@@ -7,15 +7,15 @@
 get_filtered_SP_index(SG, spatialDelta)
 }
 \arguments{
-\item{SG}{a data frame with the multi-dimensional spatial grid coordinates.}
+\item{SG}{a data frame with the multi-dimensional spatial grid coordinates. Such a data-frame is also provided by the function \link{simulateSPDEmodelMulti}.}
 
 \item{spatialDelta}{filter variable. Each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta}.}
 }
 \value{
-a vector containing the indexset of the spatial grid coordinates which satisfies the 'delta' condition.
+a vector containing the index-set of the spatial grid coordinates, which satisfies the \code{delta} condition.
 }
 \description{
-Filters the spatial grid by 'delta', where each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta} and returns index of the original spatial grid data frame.
+Filters the spatial grid by \code{delta}, where each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta} and returns index of the original spatial grid data frame.
 }
 \examples{
 library(data.table)
@@ -27,7 +27,7 @@ delta <- 0.05
 get_filtered_SP_index(SG,delta)
 }
 \seealso{
-\link{SecondOrderSPDEMulti}
+\link{SecondOrderSPDEMulti}, \link{simulateSPDEmodelMulti}
 }
 \keyword{filtered}
 \keyword{for}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/variance_approx.R
 \name{variance_approx}
 \alias{variance_approx}
-\title{Simulate a second-order stochastic partial differential equations in multiple space dimension}
+\title{Calculates the approximated variance of the replacement random normals}
 \usage{
 variance_approx(
   d,
@@ -18,19 +18,21 @@ variance_approx(
 )
 }
 \arguments{
-\item{d}{a natural number which denotes the spacial dimension. 'd' must be greater 1.}
+\item{d}{a natural number, which denotes the spacial dimension. 'd' must be greater 1.}
 
-\item{theta0}{a real number which controls the drift of the solution field.}
+\item{theta0}{a real number, which controls the drift of the solution field.}
 
-\item{nu}{a real vector of dimension 'd' which controls the curvature of the solution field on each axis respectively.}
+\item{nu}{a real vector of dimension 'd', which controls the curvature of the solution field on each axis, respectively.}
 
-\item{sigma}{a real number greater than zero which controls the overall noise level of the solution field.}
+\item{eta}{a real number greater than zero, which reduces the noise level of parameter \code{sigma} and the curvature effect of parameter \code{nu}.}
 
-\item{alphaDash}{a real number in \code{(0,1)} controlling the roughness of the sample paths.}
+\item{sigma}{a real number greater than zero, which controls the overall noise level of the solution field.}
+
+\item{alphaDash}{a real number in \code{(0,1)}, controlling the roughness of the temporal marginal process.}
 
 \item{numberOfSpatialPoints}{number of equidistant spatial points M on each axis, where we consider the domain \code{[0,1]}.}
 
-\item{L}{a natural number indicating the replacement bound LM dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.}
+\item{L}{a natural number indicating the replacement bound 'LM', dependent on multiples of the d-dimensional vector with entries \code{M}. The default is \code{L=10}.}
 
 \item{K}{a natural number greater 'L' denoting the cut-off if the variance calculation for the replacement random variables (only of use when method is 'replacement'). 'K' is set to be 'L+10' by default. A too small choice of 'K' produces a bias of the data.}
 
@@ -40,7 +42,7 @@ variance_approx(
 A vector containing the approximated variance
 }
 \description{
-Simulate a sample of a SPDE model in d space dimension on a discrete grid with \code{N}-temporal and \code{M}-spatial (each axis) points, where the grid points are equidistant within the unit square. The initial condition is set to be zero. For simulating SPDE samples with a general initial condition use the build-in cut-off method. Note that this method results in a systematic bias and dramatically increases computational costs. Furthermore, the SPDE model is using the Dirichlet boundary condition. The multi-dimensional replacement method only approximates the replacement variance. Therefore the optional parameter 'K' appears. A too small choice of 'K' results in an bias of the simulated data.
+Calculates the approximated variance of the replacement random normals within the replacement method. Of use, when considering a Monte carlo sudy. For details, see references or \link{simulateSPDEmodelMulti}.
 }
 \examples{
 d <- 2
@@ -55,6 +57,14 @@ K <- 50
 
 va <- variance_approx(d,theta0,nu,eta,sigma,alphaDash,M,L,K)
 }
+\references{
+Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
+}
 \seealso{
 \link{simulateSPDEmodelMulti}
 }
+\keyword{Approximatex}
+\keyword{for}
+\keyword{method}
+\keyword{replacement}
+\keyword{variance}

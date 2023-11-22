@@ -1,10 +1,10 @@
 #' Simulates multiple second-order stochastic partial differential equations in multiple space dimension using Monte-Carlo repetitions
 #'
-#' Simulate Monte-Carlo samples of a SPDE model in multiple space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each repetition uses the "replacement"-method by default, see [SecondOrderSPDEMulti::simulateSPDEmodelMulti].
+#' Simulates a Monte-Carlo study of a SPDE model in multiple space dimension on a discrete grid with \code{N} temporal and \code{M} spatial points, where the grid points are equidistant within the unit square. Each repetition uses the "replacement"-method by default, see [SecondOrderSPDEMulti::simulateSPDEmodelMulti].
 #' @param repetitions A natural number giving the number of the Monte-Carlo repetitions.
 #' @param ... for further arguments see [SecondOrderSPDEMulti::simulateSPDEmodelMulti].
 #' @keywords Monte-Calro samples SPDE.
-#' @references PhD thesis Bossert, P.
+#' @references Bossert, P. (2023), 'Parameter estimation for second-order SPDEs in multiple space dimensions'
 #' @export
 #' @seealso [SecondOrderSPDEMulti::simulateSPDEmodelMulti],[SecondOrderSPDEMulti::SecondOrderSPDEMulti].
 #' @return A list of the returns of [SecondOrderSPDEMulti::simulateSPDEmodelMulti].

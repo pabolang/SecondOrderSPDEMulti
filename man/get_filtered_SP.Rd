@@ -7,15 +7,15 @@
 get_filtered_SP(SG, spatialDelta)
 }
 \arguments{
-\item{SG}{a data frame with the multi-dimensional spatial grid coordinates.}
+\item{SG}{a data frame with the multi-dimensional spatial grid coordinates. Such a data-frame is also provided by the function \link{simulateSPDEmodelMulti}.}
 
-\item{spatialDelta}{filter variable. Each entry has to  be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta}}
+\item{spatialDelta}{filter variable. Each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta}.}
 }
 \value{
 a data frame containing the filtered spatial grid.
 }
 \description{
-Filters the spatial grid by 'delta', where each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta}
+Filters the spatial grid by \code{delta}, where each entry has to be greater or equal \code{spatialDelta} and less or equal 1-\code{spatialDelta} and returns filtered data-frame.
 }
 \examples{
 library(data.table)
@@ -27,8 +27,8 @@ delta <- 0.05
 get_filtered_SP(SG,delta)
 }
 \seealso{
-\link{SecondOrderSPDEMulti}
+\link{SecondOrderSPDEMulti}, \link{simulateSPDEmodelMulti}
 }
-\keyword{Filter}
+\keyword{Filtered}
 \keyword{grid}
-\keyword{spatial}
+\keyword{satial}
